@@ -31,19 +31,6 @@ body::after {
 }
 
 
-/* Keyframes for random box positioning */
-/* @keyframes randomBoxes {
-
-    0%,
-    100% {
-        mask-position: 10% 10%, 90% 30%, 50% 70%;
-    }
-
-    50% {
-        mask-position: 70% 20%, 20% 60%, 60% 10%;
-    }
-} */
-
 /* Main container: Flexbox for alignment */
 .main-container {
     position: relative;
