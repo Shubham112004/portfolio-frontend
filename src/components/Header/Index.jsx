@@ -1,5 +1,4 @@
 import React from 'react'
-import './style.css'
 import Menu from '../Menu/Index'
 const Header = () => {
     return (

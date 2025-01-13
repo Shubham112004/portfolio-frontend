@@ -1,5 +1,6 @@
 
 import Home from './containers/Home'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 function App() {
 

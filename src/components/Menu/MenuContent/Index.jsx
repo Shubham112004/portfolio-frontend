@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import './style.css'
 import { GitHub, Linkedin, Mail, X } from 'react-feather';
 import { MenuContext } from '../MenuManager/Index';
 import cn from 'classnames'
