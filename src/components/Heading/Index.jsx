@@ -3,6 +3,7 @@ import ContactButton from '../ContactButton/Index'
 import gsap from 'gsap';
 import AboutMe from '../AboutMe/Index';
 import { Plus } from 'react-feather';
+import ProjectsTree from '../ProjectsTree/Index';
 
 const Heading = () => {
     useEffect(() => {
@@ -66,11 +67,13 @@ const Heading = () => {
                         Portfolio
                     </h1>
                     <ContactButton content="Contact Me"
+                        icon={Plus}
                         className="contact-me-button" style={{ position: 'absolute', right: '10vw', bottom: '25vh' }}
                         onClick={() => console.log('Contact button clicked!')} />
                 </div>
             </div>
             <AboutMe />
+            <ProjectsTree />
         </div>
     )
 }

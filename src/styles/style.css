@@ -2,6 +2,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 @import url('https://fonts.cdnfonts.com/css/satoshi');
 
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 
 /* Base styles for the contact button */
 .contact-button {
@@ -43,6 +57,7 @@
         bottom: 20vh;
         /* Adjust position for tablets */
     }
+
 }
 
 /* Media query for mobile devices */
@@ -88,7 +103,7 @@
     .brand-description {
         position: fixed;
         z-index: 11;
-        top: 80px;
+        top: 65px;
         right: 4vw;
         max-width: 120px;
 
@@ -158,6 +173,11 @@
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 480px) {
+
+    .outer-container {
+        margin-left: 0px;
+    }
+
     .main-container {
         padding: 10px;
         align-items: center;
@@ -390,11 +410,90 @@
 }
 
 @media only screen and (max-width: 480px) {
+    .myImage {
+        width: 360px;
+        padding-right: 8px;
+        height: 500px;
+    }
+
     .aboutMe-content h1 {
         font-size: 2rem;
     }
 
-    .aboutMe-content {
-        padding: 5px;
+    .aboutMe-content p {
+        padding-right: 8px;
     }
+}
+
+.file-tree-inner-container {
+    padding: 15px;
+    margin-left: 1px !important;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 360px;
+    background-image:
+        linear-gradient(#eff4f5, #eff4f5);
+}
+
+.file-tree {
+    font-family: 'Satoshi';
+    width: 100%;
+
+}
+
+.tree {
+    list-style-type: none;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.sub-tree {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 0;
+    position: relative;
+}
+
+.sub-tree>li {
+    position: relative;
+}
+
+.sub-tree>li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    /* Align with parent folder */
+    width: 1px;
+    height: 100%;
+    background-color: #d3d3d3;
+    /* Vertical grey line */
+}
+
+.sub-tree>li:last-child::before {
+    height: 50%;
+    /* Shorten the line for the last item */
+}
+
+.node {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.node:hover {
+    color: #007bff;
+    /* Optional hover effect */
+}
+
+.folder-name {
+    margin-left: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sub-tree .node {
+    padding-left: 10px;
+    /* Space between the line and text */
 }
