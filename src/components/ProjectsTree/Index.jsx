@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Folder, File, Link, Package } from "react-feather";
+import { useNavigate } from "react-router-dom";
 import ContactButton from "../ContactButton/Index";
+import abcProj from '../../assets/aboutMe11.jpg';
+import pqrProj from '../../assets/experience11.jpg';
+import xyzProj from '../../assets/skills2.jpg';
+import lmnProj from '../../assets/projects11.jpg';
+import pentagonProj from '../../assets/contactMe11.jpg';
 
 const ProjectsTree = () => {
     const [openNodes, setOpenNodes] = useState({
@@ -10,8 +16,8 @@ const ProjectsTree = () => {
         Backend: true,
         FullStack: true,
     }); // Keeps track of open nodes.
+    const [hoveredImage, setHoveredImage] = useState(null); // Tracks the hovered image.
 
-    // Toggles the visibility of sub-trees.
     const toggleNode = (nodeName) => {
         setOpenNodes((prev) => ({
             ...prev,
@@ -19,12 +25,20 @@ const ProjectsTree = () => {
         }));
     };
 
+    const handleHover = (image) => {
+        setHoveredImage(image);
+    };
+
+    const handleHoverLeave = () => {
+        setHoveredImage(null);
+    };
+
+    const navigate = useNavigate();
+
     return (
         <div className="file-tree-container">
-
             <h1>Projects</h1>
             <div className="file-tree-inner-container row">
-
                 <div className="file-tree col-md-4">
                     <ul className="tree">
                         {/* Projects Folder */}
@@ -43,7 +57,10 @@ const ProjectsTree = () => {
                                         </div>
                                         {openNodes["WebDesigns"] && (
                                             <ul className="sub-tree">
-                                                <li>
+                                                <li
+                                                    onMouseEnter={() => handleHover(abcProj)}
+                                                    onMouseLeave={handleHoverLeave}
+                                                >
                                                     <div className="node">
                                                         <File />
                                                         <span>abc project <Link width="15px" /></span>
@@ -60,13 +77,19 @@ const ProjectsTree = () => {
                                         </div>
                                         {openNodes["Frontend"] && (
                                             <ul className="sub-tree">
-                                                <li>
+                                                <li
+                                                    onMouseEnter={() => handleHover(pqrProj)}
+                                                    onMouseLeave={handleHoverLeave}
+                                                >
                                                     <div className="node">
                                                         <File />
                                                         <span>pqr project <Link width="15px" /></span>
                                                     </div>
                                                 </li>
-                                                <li>
+                                                <li
+                                                    onMouseEnter={() => handleHover(xyzProj)}
+                                                    onMouseLeave={handleHoverLeave}
+                                                >
                                                     <div className="node">
                                                         <File />
                                                         <span>xyz project <Link width="15px" /></span>
@@ -83,18 +106,14 @@ const ProjectsTree = () => {
                                         </div>
                                         {openNodes["Backend"] && (
                                             <ul className="sub-tree">
-                                                {/* UI Folder */}
-                                                <li>
-                                                    {openNodes["Backend"] && (
-                                                        <ul className="sub-tree">
-                                                            <li>
-                                                                <div className="node">
-                                                                    <File />
-                                                                    <span>lmn project <Link width="15px" /></span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    )}
+                                                <li
+                                                    onMouseEnter={() => handleHover(lmnProj)}
+                                                    onMouseLeave={handleHoverLeave}
+                                                >
+                                                    <div className="node">
+                                                        <File />
+                                                        <span>lmn project <Link width="15px" /></span>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         )}
@@ -107,7 +126,10 @@ const ProjectsTree = () => {
                                         </div>
                                         {openNodes["FullStack"] && (
                                             <ul className="sub-tree">
-                                                <li>
+                                                <li
+                                                    onMouseEnter={() => handleHover(pentagonProj)}
+                                                    onMouseLeave={handleHoverLeave}
+                                                >
                                                     <div className="node">
                                                         <File />
                                                         <span>Pentagon Career Institute <Link width="15px" /></span>
@@ -122,17 +144,25 @@ const ProjectsTree = () => {
                     </ul>
                 </div>
 
-                <div className="col-md-5">
-
+                <div className="col-md-5 projects-preview d-flex justify-content-center align-items-center">
+                    {hoveredImage && (
+                        <img
+                            src={hoveredImage}
+                            alt="Project Preview"
+                            className={hoveredImage ? "active" : ""}
+                        />
+                    )}
                 </div>
 
                 <div className="col-md-2">
-                    <ContactButton content="All Projects"
-                        icon={Package}
-                        className="all-projects-button" style={{ position: 'absolute', right: '1vw', top: '215vh' }}
-                        onClick={() => console.log('Contact button clicked!')} />
+                    <ContactButton
+                        content="All Projects"
+                        icon={Link}
+                        className="all-projects-button"
+                        style={{ position: "absolute", right: "1vw", top: "215vh" }}
+                        onClick={() => navigate('/projects')} // Navigate to /projects route
+                    />
                 </div>
-
             </div>
         </div>
     );

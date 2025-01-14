@@ -20,8 +20,8 @@ const Heading = () => {
             });
         };
 
-        // Event handlers for hover effects
-        const handleMouseEnter = () => {
+        // Event handlers for hover effects on h1
+        const handleMouseEnterH1 = () => {
             cursor.innerHTML = 'Pixel Perfect';
             cursor.style.color = 'white';
             gsap.to(cursor, {
@@ -30,8 +30,7 @@ const Heading = () => {
             });
         };
 
-        const handleMouseLeave = () => {
-            console.log('Mouse left h1'); // Debugging
+        const handleMouseLeaveH1 = () => {
             cursor.innerHTML = '';
             gsap.to(cursor, {
                 scale: 1,
@@ -39,22 +38,47 @@ const Heading = () => {
             });
         };
 
+        // Event handler to reset cursor behavior when leaving outer-container-2
+        const handleMouseLeaveContainer = () => {
+            cursor.innerHTML = '';
+            gsap.to(cursor, {
+                scale: 1,
+                backgroundColor: 'transparent',
+            });
+        };
+
         document.addEventListener('mousemove', moveCursor);
 
         const h1 = document.querySelector('h1');
+        const outerContainer2 = document.querySelector('.outer-container-2');
+
         if (h1) {
-            h1.addEventListener('mouseenter', handleMouseEnter);
-            h1.addEventListener('mouseleave', handleMouseLeave);
+            h1.addEventListener('mouseenter', handleMouseEnterH1);
+            h1.addEventListener('mouseleave', handleMouseLeaveH1);
         } else {
-            console.error('h1 element not found'); // Debugging
+            console.error('h1 element not found');
+        }
+
+        if (outerContainer2) {
+            outerContainer2.addEventListener('mouseleave', handleMouseLeaveContainer);
+        } else {
+            console.error('.outer-container-2 element not found');
         }
 
         // Cleanup on component unmount
         return () => {
             document.removeEventListener('mousemove', moveCursor);
+            if (h1) {
+                h1.removeEventListener('mouseenter', handleMouseEnterH1);
+                h1.removeEventListener('mouseleave', handleMouseLeaveH1);
+            }
+            if (outerContainer2) {
+                outerContainer2.removeEventListener('mouseleave', handleMouseLeaveContainer);
+            }
             document.body.removeChild(cursor);
         };
     }, []);
+
     return (
         <div className='outer-container'>
             <div className="outer-container-2">
